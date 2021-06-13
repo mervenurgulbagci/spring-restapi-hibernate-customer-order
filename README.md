@@ -18,6 +18,8 @@ For building and running the application you need:
   http://localhost:8080
 ```
 
+## How to work endpoint
+- [postman](https://documenter.getpostman.com/view/11330777/TzeTKV33)
 
 ## Referenced articles
 - [JPA Query Parameters](https://www.baeldung.com/jpa-query-parameters)
