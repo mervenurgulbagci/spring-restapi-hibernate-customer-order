@@ -12,10 +12,12 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     Integer id;
+
     @Column(name = "details")
     String orderDetails;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="customer_id")
-    Customer customerxyz;
+    Customer customerjoin;
 }

@@ -13,6 +13,11 @@ public class OrderServiceImpl implements OrderService {
 
     final OrderRepository orderRepository;
 
+    /**
+     *  Tüm sipariş listesini getirir.
+     * @return     Sipariş listesi
+     */
+
     @Override
     public List<Order> getOrders() {
         try {

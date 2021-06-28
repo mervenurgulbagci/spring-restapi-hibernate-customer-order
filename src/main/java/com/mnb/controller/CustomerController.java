@@ -23,7 +23,7 @@ public class CustomerController {
     final CustomerService customerService;
 
     /**
-     * C1: Tüm müşterileri getirir.
+     * C1: It shows all customers.
      *
      * @return List<Customer>
      */
@@ -37,7 +37,7 @@ public class CustomerController {
     }
 
     /**
-     * C2: Filtreye uygun müşterileri getirir.
+     * C2: It shows customers by filter.
      *
      * @param inDTO   Filtre bilgileri
      * @return      List<Customer>
@@ -53,9 +53,9 @@ public class CustomerController {
     }
 
     /**
-     * C3: İd bilgisi girilen müşteriyi getirir.
+     * C3: Shows the customer whose id information is entered.
      *
-     * @param id    Müşteri id bilgisi
+     * @param id    Customer id
      * @return      Customer
      */
     @GetMapping({"/{id}"})
@@ -69,9 +69,9 @@ public class CustomerController {
     }
 
     /**
-     * C4: Yeni müşteri oluşturur.
+     * C4: Create a new customer.
      *
-     * @param dto   Yeni müşteri bilgileri
+     * @param dto   New customer information
      * @return      Http 201
      */
     @PostMapping
@@ -86,14 +86,14 @@ public class CustomerController {
     }
 
     /**
-     * C5: Id bilgisi girilen müşteriyi günceller.
+     * C5: Updated the customer whose id information is entered.
      *
-     * @param id                Müşteri id bilgisi
-     * @param customerInDTO     Güncellenecek müşteri bilgisi
+     * @param id                Customer id
+     * @param customerInDTO     Customer information to be updated
      * @return Http 202
      */
     @PutMapping({"/{id}"})
-    public ResponseEntity<Customer> updateCustomer(@PathVariable("id") Integer id, @RequestBody CustomerInDTO customerInDTO) {
+    public ResponseEntity<?> updateCustomer(@PathVariable("id") Integer id, @RequestBody CustomerInDTO customerInDTO) {
 
         customerService.updateCustomer(id, customerInDTO);
 
@@ -101,8 +101,8 @@ public class CustomerController {
     }
 
     /**
-     * C6: Id bilgisi girilen müşteriyi siler.
-     * @param id    Silinecek müşteri id bilgisi
+     * C6: Deleted the customer whose id information is entered.
+     * @param id    Customer information to be deleted
      * @return      Http 204
      */
     @DeleteMapping({"/{id}"})
@@ -112,7 +112,7 @@ public class CustomerController {
     }
 
     /**
-     * C7:
+     * C7: List of customers younger than 25 years old without "most" in their name.
      *
      * @return  List<Customer>
      */
@@ -122,6 +122,21 @@ public class CustomerController {
         List<Customer> customers = customerService.findAllWhichAreUnder25AndHasNotEN();
         if (customers.isEmpty())
             return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(customers);
+    }
+
+    /**
+     *C8: Shows a list of customers over 30 years old.
+     *
+     * @return      List<Customer>
+     */
+    @GetMapping("/filter-age")
+    public ResponseEntity<?> findAllCustomersByCustomerAge() {
+
+        List<Customer> customers = customerService.findAllCustomersByCustomerAge();
+        if (customers.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(customers);
     }
 }

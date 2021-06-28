@@ -18,9 +18,9 @@ public class OrderController {
     final OrderService orderService;
 
     /**
-     * O1: Bütün siparişleri listeler.
+     * O1: Shows all orders
      *
-     * @return Sipariş listesi
+     * @return Order list
      */
     @GetMapping
     public ResponseEntity<?> getAllCustomers() {

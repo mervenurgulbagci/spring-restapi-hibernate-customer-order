@@ -21,4 +21,5 @@ public interface CustomerService {
 
     List<Customer> findAllWhichAreUnder25AndHasNotEN();
 
+    List<Customer> findAllCustomersByCustomerAge();
 }

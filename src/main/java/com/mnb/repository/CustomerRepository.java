@@ -12,6 +12,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
     List<Customer> findAllCustomersByCustomerAgeIs(Integer customerAge);
 
+    //Retrieve customers whose age is greater than the entered value from the Customers table.
     @Query(value =
             "SELECT * " +
             "FROM enoca.customers c " +
@@ -19,6 +20,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
             nativeQuery = true)
     List<Customer> findAllCustomersByCustomerAgeGreaterThan(Integer customerAge);
 
+    //Brings the customers who match the age value entered from the Customers table and match the entered name pattern.
     @Query(value =
             "SELECT * " +
             "FROM enoca.customers c " +
@@ -26,7 +28,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
             nativeQuery = true)
     List<Customer> findAllByFilter(String name, Integer age);
 
-    //İsminde "en" geçmeyen ve yaşı 25ten küçük olanlar
+    //Brings customers under the age of 25 who do not have "en" in their name.
     @Query(value =
             "SELECT * " +
             "FROM enoca.customers c " +
@@ -34,10 +36,11 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
             nativeQuery = true)
     List<Customer> findAllWhichAreUnder25AndHasNotEN();
 
+    //Brings customers over 30 years old.
     @Query(value =
             "SELECT * " +
             "FROM enoca.customers c " +
             "WHERE c.age >= 30 AND c.is_deleted = FALSE",
             nativeQuery = true)
-    List<Customer> findAllCustomersByCustomerAge(String name, Integer age);
+    List<Customer> findAllCustomersByCustomerAge();
 }

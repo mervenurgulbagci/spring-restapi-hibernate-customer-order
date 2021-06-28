@@ -54,14 +54,14 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void updateCustomer(Integer id, CustomerInDTO inDTO) {
 
-        /* Veritabanından id bilgisine karşılık gelen customer'ı çek */
+        /* Get the customer corresponding to the id information from the database */
         Customer customer = getCustomer(id);
         if (customer == null)
             throw new RuntimeException("Customer not found with id = " + id);
 
         boolean updated = false;
 
-        /* Yaş ve isim bilgilerinden mevcut olanları güncelle */
+        /* Update existing age and name information */
         if (inDTO.getName() != null && !inDTO.getName().equals(customer.getCustomerName())) {
             customer.setCustomerName(inDTO.getName());
             updated = true;
@@ -72,11 +72,15 @@ public class CustomerServiceImpl implements CustomerService {
             updated = true;
         }
 
-        /* Eğer güncellenen bilgi varsa kaydet */
+        /* Save if updated information */
         if (updated)
             saveCustomer(customer);
     }
 
+    /**
+     *  Deleted the customer whose id information is entered.
+     * @param id    Customer id
+     */
     @Override
     public void deleteCustomer(Integer id) {
 
@@ -115,10 +119,20 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+    @Override
+    public List<Customer> findAllCustomersByCustomerAge() {
+        try {
+            return customerRepository.findAllCustomersByCustomerAge();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Unable to get the customers!");
+        }
+    }
+
     /**
-     * Id bilgisi verilen müşteriyi veritabanından getirir.
+     * Gets the customer whose id information is entered.
      *
-     * @param id    Müşteri id bilgisi
+     * @param id    Customer id
      * @return      Customer
      */
     private Customer getCustomer(Integer id) {
@@ -135,10 +149,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     /**
-     * Verilen müşteriyi veritabanına kaydeder.
+     * Saves the given customer to the database.
      *
-     * @param customer  Kaydedilecek müşteri
-     * @return          Kaydedilen müşteri
+     * @param customer  Customer to be registered
+     * @return          Registered customer
      */
     private Customer saveCustomer(Customer customer) {
         try {
