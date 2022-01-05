@@ -1,4 +1,5 @@
-# spring-restapi-hibernate-customer-order
+# Spring-restapi-hibernate-customer-order
+It is a spring-rest project in which customer and order tables are connected by a one-to-many relationship, customer listing-deletion-add-update and some special queries are made.
 
 ## Used technologies:
 - Spring Boot
