@@ -3,6 +3,8 @@ package com.mnb.controller;
 import com.mnb.model.Customer;
 import com.mnb.model.dto.CustomerInDTO;
 import com.mnb.service.CustomerService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -59,7 +61,10 @@ public class CustomerController {
      * @return      Customer
      */
     @GetMapping({"/{id}"})
-    public ResponseEntity<?> getCustomerResponseEntity(@PathVariable Integer id) {
+    @ApiOperation(value = "Finds Customer By id", notes = "Provide an id to get specific contact from the Customer List",
+            response = Customer.class)
+    public ResponseEntity<?> getCustomerResponseEntity(@ApiParam(value = "ID value for the contact you need to retrieve", required = true)
+                                                           @PathVariable Integer id) {
 
         Customer customer = customerService.getCustomerById(id);
         if (customer == null) {

@@ -20,4 +20,32 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="customer_id")
     Customer customerjoin;
+
+
+    public Order() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(String orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
+    public com.mnb.model.Customer getCustomerjoin() {
+        return customerjoin;
+    }
+
+    public void setCustomerjoin(com.mnb.model.Customer customerjoin) {
+        this.customerjoin = customerjoin;
+    }
 }
