@@ -18,7 +18,7 @@ For building and running the application you need:
 ```
   http://localhost:8080
 ```
-
+![Swagger](https://github.com/mervenurgulbagci/spring-restapi-hibernate-customer-order/blob/master/swagger.png)
 ## How to work endpoint
 - [postman](https://documenter.getpostman.com/view/11330777/TzeTKV33)
 
